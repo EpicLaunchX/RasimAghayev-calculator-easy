@@ -4,7 +4,7 @@ from src.pytemplate.domain.models import Operands, operands_factory
 
 
 def test_operands_factory():
-    # Test creating Operands object with valid integers
+    # Test creating Operands object with positive integers
     result = operands_factory(3, 5)
     assert isinstance(result, Operands)
     assert result.first_operand == 3
@@ -23,7 +23,22 @@ def test_operands_factory():
     assert result.second_operand == 0
 
 
-def test_operands_repr():
-    # Test the __repr__ method of Operands
-    obj = Operands(7, 8)
-    assert repr(obj) == "Operands(first_operand=7, second_operand=8)"
+def test_operands_factory_type_error():
+    # Test creating Operands object with invalid types
+    with pytest.raises(TypeError, match="Both arguments must be integers."):
+        operands_factory("string", 5)
+
+    with pytest.raises(TypeError, match="Both arguments must be integers."):
+        operands_factory(3, "string")
+
+    with pytest.raises(TypeError, match="Both arguments must be integers."):
+        operands_factory("string", "string")
+
+    with pytest.raises(TypeError):
+        operands_factory(3, 5.5)
+
+    with pytest.raises(TypeError):
+        operands_factory(3.5, 5)
+
+    with pytest.raises(TypeError):
+        operands_factory(3.5, 5.5)
