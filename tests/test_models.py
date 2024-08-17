@@ -21,3 +21,9 @@ def test_operands_factory():
     assert isinstance(result, Operands)
     assert result.first_operand == 0
     assert result.second_operand == 0
+
+
+def test_operands_repr():
+    # Test the __repr__ method of Operands
+    obj = Operands(7, 8)
+    assert repr(obj) == "Operands(first_operand=7, second_operand=8)"
