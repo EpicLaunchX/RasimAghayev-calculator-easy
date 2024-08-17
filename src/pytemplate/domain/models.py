@@ -3,9 +3,8 @@ from dataclasses import dataclass
 
 @dataclass
 class Operands:
-    def __init__(self, first_operand: int, second_operand: int):
-        self.first_operand = first_operand
-        self.second_operand = second_operand
+    first_operand: int
+    second_operand: int
 
     def __repr__(self):
         return f"Operands(first_operand={self.first_operand}, second_operand={self.second_operand})"
