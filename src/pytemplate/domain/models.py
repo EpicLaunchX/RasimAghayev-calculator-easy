@@ -3,9 +3,13 @@ from dataclasses import dataclass
 
 @dataclass
 class Operands:
-    first_operand: int
-    second_operand: int
+    def __init__(self, first_operand: int, second_operand: int):
+        self.first_operand = first_operand
+        self.second_operand = second_operand
 
-    def __post_init__(self):
-        if not isinstance(self.first_operand, int) or not isinstance(self.second_operand, int):
-            raise TypeError("Both operands must be of type int")
+    def __repr__(self):
+        return f"Operands({self.first_operand}, {self.second_operand})"
+
+
+def operands_factory(first_operand: int, second_operand: int) -> Operands:
+    return Operands(first_operand, second_operand)

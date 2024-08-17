@@ -1,20 +1,23 @@
 import pytest
 
-from src.pytemplate.domain.models import Operands
+from src.pytemplate.domain.models import Operands, operands_factory
 
 
-def test_operands_creation():
-    operands = Operands(first_operand=5, second_operand=10)
-    assert operands.first_operand == 5
-    assert operands.second_operand == 10
+def test_operands_factory():
+    # Test that the function returns an Operands object with correct values
+    result = operands_factory(3, 5)
+    assert isinstance(result, Operands)
+    assert result.first_operand == 3
+    assert result.second_operand == 5
 
+    # Test with different integer values
+    result = operands_factory(-10, 20)
+    assert isinstance(result, Operands)
+    assert result.first_operand == -10
+    assert result.second_operand == 20
 
-def test_operands_type():
-    operands = Operands(first_operand=5, second_operand=10)
-    assert isinstance(operands.first_operand, int)
-    assert isinstance(operands.second_operand, int)
-
-
-def test_operands_invalid_type():
-    with pytest.raises(TypeError):
-        Operands(first_operand="5", second_operand="10")
+    # Test with zero values
+    result = operands_factory(0, 0)
+    assert isinstance(result, Operands)
+    assert result.first_operand == 0
+    assert result.second_operand == 0
