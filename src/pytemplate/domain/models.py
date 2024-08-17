@@ -8,7 +8,7 @@ class Operands:
         self.second_operand = second_operand
 
     def __repr__(self):
-        return f"Operands({self.first_operand}, {self.second_operand})"
+        return f"Operands(first_operand={self.first_operand}, second_operand={self.second_operand})"
 
 
 def operands_factory(first_operand: int, second_operand: int) -> Operands:
